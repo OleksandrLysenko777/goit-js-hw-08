@@ -4,7 +4,7 @@ const form = document.querySelector('.feedback-form');
 form.addEventListener('input', throttle(onFormData, 500));
 form.addEventListener('submit', onSubmitForm);
 
-const formData = {};
+let formData = {};
 
 function onFormData(e) {
   formData[e.target.name] = e.target.value;
@@ -16,6 +16,7 @@ function onSubmitForm(e) {
   e.preventDefault();
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
+  formData = {};
 }
 
 (function dataFromLocalStorage() {
